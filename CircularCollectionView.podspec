@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CircularCollectionView"
-  s.version      = "0.0.1"
-  s.summary      = “A collection view that scrolls circular”
+  s.version      = "1.0.0"
+  s.summary      = "A collection view that scrolls circular"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -65,7 +65,7 @@ The circular collection view is a collection view you can use in any app. It is 
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, “11.0”
+  s.platform     = :ios, "11.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -80,7 +80,7 @@ The circular collection view is a collection view you can use in any app. It is 
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => “https://github.com/phxlle/CircularCollectionView.git”, :tag => “1.0.0” }
+  s.source       = { :git => "https://github.com/phxlle/CircularCollectionView.git", :tag => "1.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +91,7 @@ The circular collection view is a collection view you can use in any app. It is 
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = “CircularCollectionView”, "CircularCollectionView/**/*.{h,m,swift}”
+  s.source_files  = "CircularCollectionView", "CircularCollectionView/**/*.{h,m,swift}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"

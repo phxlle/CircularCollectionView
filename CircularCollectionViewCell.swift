@@ -14,7 +14,7 @@ class CircularCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var imageView: RoundedImage!
+    @IBOutlet weak var imageView: UIImageView!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
