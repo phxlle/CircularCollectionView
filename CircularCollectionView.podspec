@@ -134,5 +134,6 @@ The circular collection view is a collection view you can use in any app. It is 
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
 
 end
