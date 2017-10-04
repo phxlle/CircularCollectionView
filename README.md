@@ -73,6 +73,7 @@ Swift 4.0, Xcode 9
 ## Author
 
 [Twitter](https://twitter.com/PAsselbergh)
+
 [LinkedIn](https://www.linkedin.com/in/philippeasselbergh/)
 
 ## License
