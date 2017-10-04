@@ -14,11 +14,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var wheelLbl: UILabel!
     var prevID: Int = 0
+    var maxContentOffset:Int!
+    var offsetPerItem: Int!
     override func viewDidLoad() {
         super.viewDidLoad()
         circularCollection.delegate = self
         circularCollection.dataSource = self
         selectProfile(id: 0)
+        maxContentOffset = Int(circularCollection.contentSize.width - circularCollection.bounds.width)
+        offsetPerItem = maxContentOffset/(Constants.images.count-1)
         self.imageView.contentMode = .scaleToFill
         // Do any additional setup after loading the view.
     }
@@ -43,7 +47,9 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.contentOffset = CGPoint(x: Int(150/2)*(indexPath.row), y:0)
+        maxContentOffset = Int(collectionView.contentSize.width - collectionView.bounds.width)
+        offsetPerItem = maxContentOffset/(Constants.images.count-1)
+        collectionView.contentOffset = CGPoint(x: offsetPerItem*indexPath.row, y:0)
         if prevID != indexPath.row{
             self.selectProfile(id: indexPath.row)
             prevID = indexPath.row
@@ -51,31 +57,32 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
-        print(round((scrollView.contentOffset.x/75)))
-        if prevID != Int(round((scrollView.contentOffset.x/75))){
-            if Int(round((scrollView.contentOffset.x/75))) < 0{
+        maxContentOffset = Int(circularCollection.contentSize.width - circularCollection.bounds.width)
+        offsetPerItem = maxContentOffset/(Constants.images.count-1)
+        if prevID != Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem)))){
+            if Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem)))) < 0{
                 self.selectProfile(id: 0)
-            }else if Int(round((scrollView.contentOffset.x/75))) > Constants.images.count-1{
+            }else if Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem)))) > Constants.images.count-1{
                 self.selectProfile(id: Constants.images.count-1)
             }else{
                 self.selectProfile(id: Int(round((scrollView.contentOffset.x/75))))
             }
-            prevID = Int(round((scrollView.contentOffset.x/75)))
+            prevID = Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem))))
         }
         
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(round((scrollView.contentOffset.x/75)))
-        if prevID != Int(round((scrollView.contentOffset.x/75))){
-            if Int(round((scrollView.contentOffset.x/75))) < 0{
+        maxContentOffset = Int(circularCollection.contentSize.width - circularCollection.bounds.width)
+        offsetPerItem = maxContentOffset/(Constants.images.count-1)
+        if prevID != Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem)))){
+            if Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem)))) < 0{
                 self.selectProfile(id: 0)
-            }else if Int(round((scrollView.contentOffset.x/75))) > Constants.images.count-1{
+            }else if Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem)))) > Constants.images.count-1{
                 self.selectProfile(id: Constants.images.count-1)
             }else{
-                self.selectProfile(id: Int(round((scrollView.contentOffset.x/75))))
+                self.selectProfile(id: Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem)))))
             }
-            prevID = Int(round((scrollView.contentOffset.x/75)))
+            prevID = Int(round((scrollView.contentOffset.x/CGFloat(offsetPerItem))))
        }
     }
     
