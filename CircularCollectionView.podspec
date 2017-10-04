@@ -80,7 +80,7 @@ The circular collection view is a collection view you can use in any app. It is 
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/phxlle/CircularCollectionView.git", :tag => "1.0.1" }
+  s.source       = { :git => "https://github.com/phxlle/CircularCollectionView.git", :tag => "1.1.0" }
 
 
   s.source_files  = "CircularCollectionView", "CircularCollectionView/**/*.{h,m,swift}"
