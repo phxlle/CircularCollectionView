@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CircularCollectionView"
-  s.version      = "1.0.1"
+  s.version      = "1.1.0"
   s.summary      = "A collection view that scrolls circular"
 
   # This description is used to generate tags and improve search results.
