@@ -26,8 +26,55 @@ After you added the CollectionView you have to edit the layout. The layout compo
 
 <img src="https://github.com/phxlle/CircularCollectionView/blob/master/CollectionViewLayout.png">
 
-Add an item to the Collection View and change it's class to CircularCollectionViewCell:
+Add an item to the Collection View and change it's class to CircularCollectionViewCell. Don't forget to name your identifier:
 
 <img src="https://github.com/phxlle/CircularCollectionView/blob/master/CollectionViewCell.png">
 
+Make sure to import this in your viewcontroller:
+```Swift
+import CircularCollectionView
+````
 
+Add the CollectionView in your ViewController:
+```Swift
+@IBOutlet weak var circularCollection: UICollectionView!
+````
+After you added your CollectionView you can start editing the DataSource & Delegate:
+```Swift
+func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CircularCollectionViewCell", for: indexPath) as! CircularCollectionViewCell
+return cell
+}
+```
+In this function you can add some stuf to your cells.
+For the example I used the following code to add an image to the CircularCollectionViewCell:
+```Swift
+func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CircularCollectionViewCell", for: indexPath) as! CircularCollectionViewCell
+DispatchQueue.main.async {
+let imageView = UIImageView(frame: CGRect(x: 25, y: 0, width: 100, height: 100))
+imageView.image = UIImage(named: Constants.images[indexPath.row])
+imageView.contentMode = .scaleToFill
+imageView.layer.cornerRadius = imageView.frame.size.width/2
+imageView.clipsToBounds = true
+imageView.layer.borderWidth = 1.0
+imageView.layer.borderColor = UIColor.white.cgColor
+cell.addSubview(imageView)
+}
+return cell
+}
+```
+For more information you can check the Example project.
+
+## Requirements
+
+Swift 4.0, Xcode 9
+
+## Author
+
+[Twitter](https://twitter.com/PAsselbergh)
+[LinkedIn](https://www.linkedin.com/in/philippeasselbergh/)
+
+## License
+
+CircularCollectionView is available under the MIT license. See the LICENSE file for more info.
