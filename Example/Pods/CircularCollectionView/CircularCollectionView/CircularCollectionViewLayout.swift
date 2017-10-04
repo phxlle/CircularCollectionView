@@ -17,6 +17,7 @@ public class CircularCollectionViewLayout: UICollectionViewLayout {
     
     public var angle: CGFloat {
         let collAngle = angleAtExtreme*collectionView!.contentOffset.x/(collectionViewContentSize.width - ((collectionView?.bounds.width)!))
+        //print(collAngle)
         return collAngle
     }
     
@@ -45,18 +46,18 @@ public class CircularCollectionViewLayout: UICollectionViewLayout {
         super.prepare()
         let centerX = collectionView!.contentOffset.x + (collectionView!.bounds.width/2.0)
         let anchorPointY = ((itemSize.height/2.0) + radius)/itemSize.height
-       
-        let theta = atan2(collectionViewContentSize.width/2.0, radius + (itemSize.height/2.0) - (collectionView!.bounds.height/2.0))
-       
+        //1
+        let theta = atan2(collectionViewContentSize.width/2.0, radius + (itemSize.height/2.0) - (collectionView!.bounds.height/2.0)) //1//collectionView!.bounds.width
+        //2
         var startIndex = 0
         var endIndex = collectionView!.numberOfItems(inSection: 0) - 1
-        
+        //3
         if (angle < -theta) {
             startIndex = Int(floor((-theta - angle)/anglePerItem))
         }
-        
+        //4
         endIndex = min(endIndex, Int(ceil((theta - angle)/anglePerItem)))
-        
+        //5
         if (endIndex < startIndex) {
             endIndex = 0
             startIndex = 0
@@ -85,7 +86,7 @@ public class CircularCollectionViewLayout: UICollectionViewLayout {
     
     override public func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         var finalContentOffset = proposedContentOffset
-        let factor = -angleAtExtreme/((collectionView?.contentSize.width)! - (collectionView?.bounds.width)!) 
+        let factor = -angleAtExtreme/((collectionView?.contentSize.width)! - (collectionView?.bounds.width)!) //(collectionView?.bounds.width)!)
          let proposedAngle = proposedContentOffset.x*factor
          let ratio = proposedAngle/anglePerItem
          var multiplier: CGFloat

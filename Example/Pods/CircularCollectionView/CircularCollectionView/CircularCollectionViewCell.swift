@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class CircularCollectionViewCell: UICollectionViewCell {
+public class CircularCollectionViewCell: UICollectionViewCell {    
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         contentView.layer.cornerRadius = 50

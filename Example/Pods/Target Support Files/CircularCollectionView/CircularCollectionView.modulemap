@@ -1,0 +1,6 @@
+framework module CircularCollectionView {
+  umbrella header "CircularCollectionView-umbrella.h"
+
+  export *
+  module * { export * }
+}
