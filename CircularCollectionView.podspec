@@ -87,6 +87,5 @@ The circular collection view is a collection view you can use in any app. It is 
 
 
 s.frameworks = 'UIKit'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
 
 end
