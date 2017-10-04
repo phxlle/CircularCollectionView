@@ -7,42 +7,42 @@
 
 import UIKit
 
-class CircularCollectionViewLayout: UICollectionViewLayout {
+public class CircularCollectionViewLayout: UICollectionViewLayout {
     
-    let itemSize = CGSize(width: 150, height: 150)
+    public let itemSize = CGSize(width: 150, height: 150)
     
-    var angleAtExtreme: CGFloat {
+    public var angleAtExtreme: CGFloat {
         return collectionView!.numberOfItems(inSection: 0) > 0 ? -CGFloat(collectionView!.numberOfItems(inSection: 0)-1)*anglePerItem : 0
     }
     
-    var angle: CGFloat {
+    public var angle: CGFloat {
         let collAngle = angleAtExtreme*collectionView!.contentOffset.x/(collectionViewContentSize.width - ((collectionView?.bounds.width)!))
         //print(collAngle)
         return collAngle
     }
     
-    var radius: CGFloat = 500 {
+    public var radius: CGFloat = 500 {
         didSet {
             invalidateLayout()
         }
     }
     
-    var anglePerItem: CGFloat {
+    public var anglePerItem: CGFloat {
         return atan(itemSize.width/(radius*2))
     }
     
-    var attributesList = [CircularCollectionViewLayoutAttributes]()
+    public var attributesList = [CircularCollectionViewLayoutAttributes]()
     
-    override var collectionViewContentSize: CGSize{
+    override public var collectionViewContentSize: CGSize{
         return CGSize(width: CGFloat(collectionView!.numberOfItems(inSection: 0))*itemSize.width,
                       height: collectionView!.bounds.height)
     }
     
-    override class var layoutAttributesClass: AnyClass {
+    override public class var layoutAttributesClass: AnyClass {
         return CircularCollectionViewLayoutAttributes.self
     }
     
-    override func prepare() {
+    override public func prepare() {
         super.prepare()
         let centerX = collectionView!.contentOffset.x + (collectionView!.bounds.width/2.0)
         let anchorPointY = ((itemSize.height/2.0) + radius)/itemSize.height
@@ -71,20 +71,20 @@ class CircularCollectionViewLayout: UICollectionViewLayout {
             return attributes
         }
     }
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return attributesList
     }
     
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> (UICollectionViewLayoutAttributes!) {
+    override public func layoutAttributesForItem(at indexPath: IndexPath) -> (UICollectionViewLayoutAttributes!) {
         return attributesList[indexPath.row]
     }
     
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
     
     
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+    override public func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         var finalContentOffset = proposedContentOffset
         let factor = -angleAtExtreme/((collectionView?.contentSize.width)! - (collectionView?.bounds.width)!) //(collectionView?.bounds.width)!)
          let proposedAngle = proposedContentOffset.x*factor

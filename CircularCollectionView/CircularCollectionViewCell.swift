@@ -7,16 +7,16 @@
 
 import UIKit
 
-class CircularCollectionViewCell: UICollectionViewCell {
-    var imageName = "" {
-        didSet {
-            imageView!.image = UIImage(named: imageName)
-        }
-    }
+public class CircularCollectionViewCell: UICollectionViewCell {
+//    public var imageName = "" {
+//        didSet {
+//            imageView!.image = UIImage(named: imageName)
+//        }
+//    }
     
-    @IBOutlet var imageView: UIImageView!
+   // @IBOutlet weak var imageView: UIImageView!
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         contentView.layer.cornerRadius = 50
         contentView.layer.borderColor = UIColor.black.cgColor
@@ -26,12 +26,12 @@ class CircularCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = true
     }
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         //imageView!.contentMode = .scaleAspectFill
     }
     
-    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+    override public func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
         let att = layoutAttributes as! CircularCollectionViewLayoutAttributes
             self.layer.anchorPoint = att.anchorPoint

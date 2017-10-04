@@ -7,16 +7,16 @@
 
 import UIKit
 
-class CircularCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
-    var anchorPoint = CGPoint(x: 0.5, y: 0.5)
+public class CircularCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
+    public var anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
-    var angle: CGFloat = 50 {
+    public var angle: CGFloat = 50 {
         didSet {
             zIndex = Int(angle*100000)
             transform = CGAffineTransform.init(rotationAngle: angle)
         }
     }
-    override func copy(with zone: NSZone? = nil) -> Any {
+    override public func copy(with zone: NSZone? = nil) -> Any {
         
         let copiedAttributes: CircularCollectionViewLayoutAttributes = super.copy(with: zone) as! CircularCollectionViewLayoutAttributes
         copiedAttributes.anchorPoint = self.anchorPoint
