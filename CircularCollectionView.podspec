@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CircularCollectionView"
-  s.version      = "1.1.3"
+  s.version      = "1.2.0"
   s.summary      = "A collection view that scrolls circular"
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ The circular collection view is a collection view you can use in any app. It is 
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/phxlle/CircularCollectionView.git", :tag => "1.1.3" }
+  s.source       = { :git => "https://github.com/phxlle/CircularCollectionView.git", :tag => "1.2.0" }
 
 
   s.source_files  = "CircularCollectionView", "CircularCollectionView/**/*.{h,m,swift}"
