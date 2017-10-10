@@ -88,13 +88,18 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return Constants.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CircularCollectionViewCell", for: indexPath) as! CircularCollectionViewCell
         DispatchQueue.main.async {
-            let imageView = UIImageView(frame: CGRect(x: 25, y: 0, width: 100, height: 100))
+            //Because we use reusable cells we have to delete the subviews from the cells.
+            //We don't want to overload the cell with subviews
+            for view in cell.subviews{
+                view.removeFromSuperview()
+            }
+            let imageView = UIImageView(frame: CGRect(x: cell.frame.width/2 - 50, y: 0, width: 100, height: 100))
             imageView.image = UIImage(named: Constants.images[indexPath.row])
             imageView.contentMode = .scaleToFill
             imageView.layer.cornerRadius = imageView.frame.size.width/2
@@ -102,8 +107,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
             imageView.layer.borderWidth = 1.0
             imageView.layer.borderColor = UIColor.white.cgColor
             cell.addSubview(imageView)
-//            cell.layer.borderColor = UIColor.black.cgColor
-//            cell.layer.borderWidth = 1
         }
         return cell
         
